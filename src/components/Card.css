@@ -1,0 +1,33 @@
+.card {
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+	height: 100%;
+
+	border-radius: 5px;
+	background-color: white;
+	font-family: Arial, Helvetica, sans-serif;
+
+	overflow-y: hidden;
+}
+
+.card .head {
+	border-radius: 5px 5px 0 0;
+	background-color: teal;
+
+	color: white;
+
+	padding: 15px;
+}
+
+.card .head .title {
+	font-size: 20px;
+	font-weight: bold;
+}
+
+.card .head .meta {
+	color: lightgrey;
+	font-size: 15px;
+}
+
+.card .content {
+	padding: 10px;
+}

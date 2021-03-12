@@ -1,0 +1,51 @@
+:root {
+	--input-border: #8b8a8b;
+	--input-focus-h: 180;
+	--input-focus-s: 100%;
+	--input-focus-l: 25%;
+}
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+label {
+	font-size: 20px;
+	font-family: inherit;
+	color: grey;
+}
+
+.input {
+	margin: 15px;
+}
+
+input {
+	font-size: 16px;
+	font-size: max(16px, 1em);
+	font-family: inherit;
+	padding: 0.5em 1em;
+	background-color: #fff;
+	border: 2px solid var(--input-border);
+	border-radius: 5px;
+
+	transition: 180ms box-shadow ease-in-out;
+}
+
+input:focus {
+	outline: 3px solid transparent;
+	border-color: hsl(
+		var(--input-focus-h),
+		var(--input-focus-s),
+		var(--input-focus-l)
+	);
+
+	box-shadow: 0 0 0 3px
+		hsla(
+			var(--input-focus-h),
+			var(--input-focus-s),
+			calc(var(--input-focus-l) + 5%),
+			0.8
+		);
+}
