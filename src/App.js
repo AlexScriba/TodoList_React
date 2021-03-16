@@ -1,35 +1,48 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
+import { connect } from "react-redux";
+
 import Login from "./screens/Login";
 import Register from "./screens/Register";
 import Route from "./components/Route";
 import "./App.css";
-import { getUser, getUserLists } from "./tools/db";
 import TodoList from "./screens/TodoList";
+import { getUserLists } from "./tools/db";
+import { selectLists } from "./actions";
 
-const App = () => {
-	const [uid, setUid] = useState("");
-
+const App = ({ user, selectLists }) => {
 	useEffect(() => {
-		if (uid) {
-			window.history.pushState({}, "", "/todolist");
-			const navEvent = new PopStateEvent("popstate");
-			window.dispatchEvent(navEvent);
+		if (user) {
+			const fetchLists = async () => {
+				const tmpList = await getUserLists(user.uid);
+				selectLists(tmpList);
+
+				window.history.pushState({}, "", "/todolist");
+				const navEvent = new PopStateEvent("popstate");
+				window.dispatchEvent(navEvent);
+			};
+
+			fetchLists();
 		}
-	}, [uid]);
+	}, [user]);
 
 	return (
 		<div>
 			<Route path="/">
-				<Login onLogin={setUid} />
+				<Login />
 			</Route>
 			<Route path="/register">
-				<Register onLogin={setUid} />
+				<Register />
 			</Route>
 			<Route path="/todolist">
-				<TodoList uid={uid} />:
+				<TodoList />:
 			</Route>
 		</div>
 	);
 };
 
-export default App;
+const mapStateToProps = (state) => {
+	console.log(state);
+	return { user: state.user };
+};
+
+export default connect(mapStateToProps, { selectLists })(App);

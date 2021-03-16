@@ -16,7 +16,6 @@ const getUserLists = async (uid) => {
 	docs.forEach((doc) => {
 		list.push(doc.data());
 	});
-	console.log(list);
 	return list;
 };
 

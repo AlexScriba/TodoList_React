@@ -1,42 +1,25 @@
 import React, { useEffect, useState } from "react";
 import firebase from "firebase/app";
 import "firebase/firestore";
-import { getUserLists } from "../tools/db";
+import { connect } from "react-redux";
 
-const TodoList = ({ uid }) => {
-	const [lists, setLists] = useState([]);
-
+const TodoList = ({ user, lists }) => {
 	useEffect(() => {
-		if (!uid) {
+		console.log(lists);
+		if (!user) {
 			window.history.pushState({}, "", "/");
 			const navEvent = new PopStateEvent("popstate");
 			window.dispatchEvent(navEvent);
 			return;
 		}
+	}, [user]);
 
-		const startSnapshots = async () => {
-			const tmpList = await getUserLists(uid);
-			setLists(tmpList);
-			// const db = firebase.firestore();
-			// const lsitCollection = db
-			// 	.collection("users")
-			// 	.doc(uid)
-			// 	.collection("lists");
-
-			// lsitCollection.onSnapshot((docs) => {
-			// 	const retLists = [];
-			// 	docs.forEach((doc) => {
-			// 		retLists.push(doc.data());
-			// 	});
-			// 	setLists(retLists);
-			// 	console.log(lists);
-			// });
-		};
-		startSnapshots();
-		// console.log(lists);
-	}, [uid]);
-
-	return <div>{uid}</div>;
+	return <div>{user ? user.uid : null}</div>;
 };
 
-export default TodoList;
+const mapStateToProps = (state) => {
+	console.log(state);
+	return { user: state.user, lists: state.lists };
+};
+
+export default connect(mapStateToProps)(TodoList);

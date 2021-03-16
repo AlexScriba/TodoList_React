@@ -1,11 +1,15 @@
 import React, { useState } from "react";
+import { connect } from "react-redux";
+
+import "./Login.css";
 import Card from "../components/Card";
 import Input from "../components/Input";
 import Button from "../components/Button";
-import { signInWithEmailAndPassword } from "../tools/auth";
-import "./Login.css";
 
-const Login = ({ onLogin }) => {
+import { signInWithEmailAndPassword } from "../tools/auth";
+import { selectUser } from "../actions";
+
+const Login = ({ selectUser }) => {
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
 	const [errorMessage, setErrorMessage] = useState("");
@@ -23,7 +27,7 @@ const Login = ({ onLogin }) => {
 			} else {
 				setErrorMessage("");
 				console.log(response.userId);
-				onLogin(response.userId);
+				selectUser({ uid: response.userId });
 			}
 		};
 
@@ -81,4 +85,4 @@ const Login = ({ onLogin }) => {
 	);
 };
 
-export default Login;
+export default connect(null, { selectUser })(Login);
