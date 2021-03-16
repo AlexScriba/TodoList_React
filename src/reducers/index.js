@@ -1,4 +1,4 @@
-import { bindActionCreators, combineReducers } from "redux";
+import { combineReducers } from "redux";
 
 export const selectUserReducer = (selectedUser = null, action) => {
 	if (action.type === "SELECT_USER") {

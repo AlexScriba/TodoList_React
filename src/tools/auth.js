@@ -1,4 +1,4 @@
-import firebase from "firebase/app";
+import firebase from "firebase/app"; //decide where to import firebase so that all files have access
 import "firebase/auth";
 
 const firebaseConfig = {

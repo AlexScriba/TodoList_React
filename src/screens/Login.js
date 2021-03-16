@@ -45,8 +45,8 @@ const Login = ({ selectUser }) => {
 	};
 
 	return (
-		<div className="container">
-			<Card title="Welcome To TodoList" meta="Please Log in:" width="300px">
+		<div className="login">
+			<Card title="Welcome To TodoList" meta="Please Log in:">
 				<div className="content">
 					<form onSubmit={(e) => e.preventDefault()}>
 						<Input
@@ -69,7 +69,7 @@ const Login = ({ selectUser }) => {
 						</div>
 						<Button text="Login" onClick={attemptLogin} />
 						<div className="center">
-							<div className="register">Not a User Yet?</div>
+							<div className="register-label">Not a User Yet?</div>
 						</div>
 						<Button
 							text="Register"

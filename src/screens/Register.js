@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 
+import "./Register.css";
 import Card from "../components/Card";
 import Input from "../components/Input";
 import Button from "../components/Button";
@@ -55,7 +56,7 @@ const Register = ({ selectUser }) => {
 	};
 
 	return (
-		<div className="container">
+		<div className="register">
 			<Card title="Welcome to TodoList" meta="Please Register" width="300px">
 				<div className="content">
 					<form onSubmit={(e) => e.preventDefault()}>
@@ -87,7 +88,7 @@ const Register = ({ selectUser }) => {
 						</div>
 						<Button text="Register" onClick={attemptRegister} />
 						<div className="center">
-							<div className="register">Already a User?</div>
+							<div className="login-label">Already a User?</div>
 						</div>
 						<Button
 							text="Login"

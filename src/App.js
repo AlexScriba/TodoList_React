@@ -23,7 +23,7 @@ const App = ({ user, selectLists }) => {
 
 			fetchLists();
 		}
-	}, [user]);
+	}, [user, selectLists]);
 
 	return (
 		<div>

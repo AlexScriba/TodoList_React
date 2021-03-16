@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
-import firebase from "firebase/app";
-import "firebase/firestore";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
+
+import "./TodoList.css";
+import Card from "../components/Card";
 
 const TodoList = ({ user, lists }) => {
 	useEffect(() => {
-		console.log(lists);
 		if (!user) {
 			window.history.pushState({}, "", "/");
 			const navEvent = new PopStateEvent("popstate");
@@ -14,7 +14,23 @@ const TodoList = ({ user, lists }) => {
 		}
 	}, [user]);
 
-	return <div>{user ? user.uid : null}</div>;
+	const renderedList = lists.map((item) => {
+		//TODO: add key to list items
+		return <div className="item">{item.title}</div>;
+	});
+
+	if (!user) return null;
+
+	return (
+		<div className="todolist">
+			<Card title="Lists for UserName" meta="Please select a Card">
+				<div className="list">{renderedList}</div>
+				<div className="footer">
+					<button className="floating-action-button">+</button>
+				</div>
+			</Card>
+		</div>
+	);
 };
 
 const mapStateToProps = (state) => {

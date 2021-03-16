@@ -1,4 +1,4 @@
-.login {
+.register {
 	width: 300px;
 	min-height: 400px;
 	margin-left: auto;
@@ -6,19 +6,19 @@
 	margin-top: 200px;
 }
 
-.login .center {
+.register .center {
 	display: flex;
 	justify-content: center;
 }
 
-.login .errorMessage {
+.register .errorMessage {
 	color: red;
 	font-family: inherit;
 	font-size: 16px;
 	margin-bottom: 5px;
 }
 
-.login .register-label {
+.register .login-label {
 	color: grey;
 	font-family: inherit;
 	font-size: 18px;
